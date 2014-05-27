@@ -3,7 +3,7 @@ NERIM OTRS SKIN
 ===================================
 
 Installation
-============
+=============
 In order to install the NERIM OTRS Skin, go to the Custom directory in your OTRS
 deployment directory (e.g.: /opt/otrs/Custom)::
 
