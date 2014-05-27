@@ -14,9 +14,7 @@ Edit install.sh and make sure OTRS_USER, OTRS_GROUP and OTRS_ROOT variables are 
 
 $ sudo ./install.sh
 
-Log into OTRS system with the admin user, go to SysConfig **Core::Web** and set: 
-    **Loader::Agent::DefaultSelectedSkin** to Nerim
-then go to **Frontend::Customer** and set:
+Log into OTRS system with the admin user, go to **Frontend::Customer** and set:
     **Loader::Customer::SelectedSkin** to Nerim
 
 Change **Frontend::ImagePath** to <OTRS_CONFIG_Frontend::WebPath>skins/Agent/Nerim/img/
