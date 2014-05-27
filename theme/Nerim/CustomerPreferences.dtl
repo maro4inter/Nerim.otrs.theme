@@ -1,0 +1,95 @@
+# --
+# CustomerPreferences.dtl - provides HTML form for CustomerPreferences
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerPreferences.dtl,v 1.7 2010/08/19 09:35:20 mg Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!-- dtl:block:Body -->
+<!-- dtl:block:Head -->
+#       <h1>$Text{"$Data{"Header"}"}</h1>
+<!-- dtl:block:Head -->
+<!-- dtl:block:Item -->
+	<div class="jumbotron" >
+		<div class="row">
+			<div class="col-xs-12 col-md-8">
+            	<form action="$Env{"CGIHandle"}" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
+                	<input type="hidden" name="Action" value="$Env{"Action"}"/>
+                	<input type="hidden" name="Subaction" value="Update"/>
+                	<input type="hidden" name="Group" value="$QData{"Group"}"/>
+                    <h2 style="color:#006bb3" >$Text{"$Data{"Label"}"}</h2>
+                    <hr />
+<!-- dtl:block:Block -->
+<!-- dtl:block:InputKey -->
+	                <div class="form-group">
+						<label for="$QData{"Name"}" class="col-sm-4 control-label">$Text{"$Data{"Key"}"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-list"></span>
+	                    		<input title="$QData{"Name"}" type="text" name="$QData{"Name"}" id="$QData{"Name"}" value="$QData{"SelectedID"}" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+<!-- dtl:block:InputKey -->
+<!-- dtl:block:Input -->
+	                <div class="form-group">
+	                    <label for="$QData{"Name"}" class="col-sm-4 control-label">$Text{"$Data{"Key"}"}</label>
+	                    <div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-list"></span>
+	                    		<input title="$QData{"Name"}" type="text" name="$QData{"Name"}" id="$QData{"Name"}" value="$QData{"SelectedID"}" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                    </div>
+	                </div>
+<!-- dtl:block:Input -->
+<!-- dtl:block:Option -->				                
+                    <div class="form-group">
+	                    <label for="$QData{"Name"}" class="col-sm-4 control-label">$Text{"$Data{"Key"}"}</label>
+	                    <div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-list"></span>
+	                    		$Data{"Option"}
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                    </div>
+	                </div>
+<!-- dtl:block:Option -->
+<!-- dtl:block:Upload -->
+#                    <div>
+#                        <label for="$QData{"Name"}">$Text{"$Data{"Key"}"}</label>
+#                        <input title="$QData{"Name"}" id="$QData{"Name"}" name="$QData{"Name"}" type="file" size="20" /><br/>
+#                        <div title="$QData{"Filename"}">$QData{"Filename","30"}</div>
+#                        <div class="ClearLeft"></div>
+#                    </div>
+<!-- dtl:block:Upload -->
+<!-- dtl:block:Password -->
+	                <div class="form-group">
+						<label for="$QData{"Name"}" class="col-sm-4 control-label">$Text{"$Data{"Key"}"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-lock"></span>
+	                    		<input title="$QData{"Name"}" type="password" name="$QData{"Name"}" id="$QData{"Name"}" value="" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+<!-- dtl:block:Password -->
+<!-- dtl:block:Block -->
+                    <button type="submit" class="btn btn-primary" value="$Text{"Update"}">$Text{"Update"}</button>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+					    $("select").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+            	</form>
+            </div>
+        </div>
+	</div>
+<!-- dtl:block:Item -->
+<!-- dtl:block:Body -->

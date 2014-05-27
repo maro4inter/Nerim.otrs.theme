@@ -8,84 +8,91 @@
 # the enclosed file COPYING for license information (AGPL). If you
 # did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
 # --
-<!--<div id="MainBox" class="TicketView ARIARoleMain $Config{"Ticket::Frontend::CustomerTicketOverviewSortable"}">-->
+
+
 <!-- dtl:block:Filled -->
     <div class="ActionRow">
-        <ul class="Filter Tabs">
-<!-- dtl:block:FilterHeader -->
-            <li class="$QData{"ClassLI"}">
-                <a class="$QData{"ClassA"}" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};Filter=$LQData{"Filter"};SortBy=$LQData{"SortBy"};Order=$LQData{"OrderBy"};">
-                    $Text{"$Data{"Name"}"} ($QData{"Count"})
-                </a>
-            </li>
-<!-- dtl:block:FilterHeader -->
-            <li class="Clear"></li>
+        <ul class="nav nav-pills" >
+			<!-- dtl:block:FilterHeader -->
+	            <li class="$QData{"ClassLI"}">
+	                <a class="$QData{"ClassA"}" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};Filter=$LQData{"Filter"};SortBy=$LQData{"SortBy"};Order=$LQData{"OrderBy"};">
+						$Text{"$Data{"Name"}"} ($QData{"Count"})
+	                </a>
+	            </li>
+			<!-- dtl:block:FilterHeader -->
         </ul>
-        <div class="Tabs Pagination">
-            $Data{"SiteNavBar"}
-        </div>
-        <div class="Clear"></div>
+        <hr />
+#        <div class="Tabs Pagination">
+#            $Data{"SiteNavBar"}
+#            <hr />
+#        </div>
     </div>
-    <div class="Content">
-        <table class="Overview">
+    <div class="table-responsive">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th class="Ticket $LQData{"TicketSort"}">
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=Ticket;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
+                        <h3><a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=Ticket;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
                             $Config{"Ticket::Hook"}
-                        </a>
+                        </a></h3>
                     </th>
                     <th class="Title $LQData{"TitleSort"}">
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=Title;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
+                        <h3><a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=Title;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
                             $Text{"Title"}
-                        </a>
+                        </a></h3>
                     </th>
                     <th class="State $LQData{"StateSort"}">
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=State;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
+                        <h3><a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=State;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
                             $Text{"State"}
-                        </a>
+                        </a></h3>
                     </th>
                     <th class="Age $LQData{"AgeSort"}">
-                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=Age;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
+                        <h3><a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};SortBy=Age;Order=$LQData{"Order"};Filter=$LQData{"Filter"}">
                             $Text{"Age"}
-                        </a>
+                        </a></h3>
                     </th>
                 </tr>
             </thead>
             <tbody>
-<!-- dtl:block:Record -->
+			<!-- dtl:block:Record -->
                 <tr title="$QData{"TicketNumber"}">
                     <td class="Ticket">
-                        <a href="$Env{"Baselink"}Action=CustomerTicketZoom;TicketID=$LQData{"TicketID"}">$QData{"TicketNumber"}</a>
+                        <a href="$Env{"Baselink"}Action=CustomerTicketZoom;TicketID=$LQData{"TicketID"}" style="text-decoration:none;" ><span class="label label-info">$QData{"TicketNumber"}</span></a>
                     </td>
-                    <td class="Title">
-                        <div>
-                            <h2><a href="$Env{"Baselink"}Action=CustomerTicketZoom;TicketID=$LQData{"TicketID"}">$QData{"Subject","60"}</a></h2>
-                            &nbsp;-&nbsp; $QData{"Body","200"}
-                        </div>
+                    <td class="Title" style="width:50%;" >
+                        <blockquote>
+                        	<p><a href="$Env{"Baselink"}Action=CustomerTicketZoom;TicketID=$LQData{"TicketID"}">$QData{"Subject","60"}</a></p>
+                         	<footer>
+                        		$QData{"Body","200"}
+                        	</footer>
+                        </blockquote>
                     </td>
-                    <td class="Status" title="$Text{"$Data{"State"}"}">$Quote{"$Text{"$Data{"State"}"}","18"}</td>
-                    <td class="Age" title="$TimeShort{"$Data{"Created"}"}">$QData{"Age","20"}</td>
+                    <td class="Status" title="$Text{"$Data{"State"}"}">
+                    	<span class="label label-success">
+                    		$Quote{"$Text{"$Data{"State"}"}","18"}
+                    	</span>
+                    </td>
+                    <td class="Age" title="$TimeShort{"$Data{"Created"}"}"><span class="badge">$QData{"Age","20"}</span></td>
                 </tr>
-<!-- dtl:block:Record -->
+			<!-- dtl:block:Record -->
             </tbody>
         </table>
     </div>
 <!-- dtl:block:FilterFooter -->
     <div id="BottomActionRow" class="ActionRow BigButtons">
-        <ul class="Tabs Filter">
-<!-- dtl:block:FilterFooterItem -->
-            <li class="$QData{"ClassLI"}">
-                <a class="$QData{"ClassA"}" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};Filter=$LQData{"Filter"};SortBy=$LQData{"SortBy"};Order=$LQData{"OrderBy"};">
-                    $Text{"$Data{"Name"}"} ($QData{"Count"})
-                </a>
-<!-- dtl:block:FilterFooterItem -->
-                <li class="Clear"></li>
-            </ul>
+#        	<ul class="Tabs Filter">
+#<!-- dtl:block:FilterFooterItem -->
+#            	<li class="$QData{"ClassLI"}">
+#                	<a class="$QData{"ClassA"}" href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=$Env{"Subaction"};Filter=$LQData{"Filter"};SortBy=$LQData{"SortBy"};Order=$LQData{"OrderBy"};">
+#                    	$Text{"$Data{"Name"}"} ($QData{"Count"})
+#               </a>
+#<!-- dtl:block:FilterFooterItem -->
+#           	<li class="Clear"></li>
+#        	</ul>
+            <hr />
             <div class="Tabs Pagination">
-                $Data{"SiteNavBar"}
+                <h3>$Data{"SiteNavBar"}</h3>
             </div>
-            <div class="Clear"></div>
         </div>
 <!-- dtl:block:FilterFooter -->
 <!-- dtl:js_on_document_complete -->
@@ -95,6 +102,7 @@
 <!-- dtl:js_on_document_complete -->
 <!-- dtl:block:Filled -->
 
+
 <!-- dtl:block:Empty -->
      	<!--<div class="Placeholder">-->
 <!-- dtl:block:EmptyDefault -->
@@ -103,18 +111,24 @@
         <hr />
         <p>$Text{"Cliquer sur le boutton ci-dessus pour pouvoir ouvrir un nouveau ticket au support."}</p>
         <p>
-          <a class="btn btn-primary" href="$Env{"Baselink"}Action=CustomerTicketMessager" role="button">$Text{"Nouveau Ticket"}</a>
+          <a class="btn btn-primary" href="$Env{"Baselink"}Action=CustomerTicketMessage" role="button">$Text{"Nouveau Ticket"}</a>
         </p>
       </div>
 <!-- dtl:block:EmptyDefault -->
 <!-- dtl:block:EmptyCustom -->
-            <h2>$QData{"Title"}</h2>
-            <p>
-                $QData{"Text"}
-            </p>
-            <a class="Button" href="$Env{"Baselink"}Action=CustomerTicketMessage">$QData{"Button"}</a>
+		<!--<h2>$QData{"Title"}</h2>
+		<p>
+		    $QData{"Text"}
+		</p>
+		<a class="Button" href="$Env{"Baselink"}Action=CustomerTicketMessage">$QData{"Button"}</a>-->
+		<div class="jumbotron">
+			<h1 style="color:#006bb3" >$QData{"Title"}</h1>
+	        <hr />
+	        <p>$QData{"Text"}</p>
+	        <p>
+	          <a class="btn btn-primary" href="$Env{"Baselink"}Action=CustomerTicketMessage" role="button">$QData{"Button"}</a>
+	        </p>
+		</div>
 <!-- dtl:block:EmptyCustom -->
     	<!--</div>-->
 <!-- dtl:block:Empty -->
-
-<!--</div>-->

@@ -1,0 +1,180 @@
+# --
+# CustomerFAQZoom.dtl - provides HTML for CustomerFAQZoom.pm
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerFAQZoom.dtl,v 1.25 2011/06/16 12:35:40 mb Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<div id="MainBox" class="TicketZoom ARIARoleMain">
+
+<!-- dtl:block:Back -->
+    <div class="ActionRow">
+        <ul class="Tabs">
+            <li><a href="$Env{"Baselink"}$Env{"LastScreenOverview"}">&larr; $Text{"Back"}</a></li>
+        </ul>
+        <div class="Clear"></div>
+    </div>
+<!-- dtl:block:Back -->
+
+    <div class="Content">
+        <div class="FAQHeader">
+            <h2 title="$QData{"Title"}">
+                $QData{"Title","40"}
+                <span class="FAQHook">$QData{"Number"}</span>
+            </h2>
+            <ul id="Metadata">
+                <li><span class="Key">$Text{"Category"}:</span> <span title="$Text{"$Data{"CategoryName"}"}">$Text{"$Data{"CategoryName"}"}</span></li>
+                <li><span class="Key">$Text{"State"}:</span> <span title="$Text{"$Data{"State"}"}">$Text{"$Data{"State"}"}</span></li>
+<!-- dtl:block:Language -->
+                <li><span class="Key">$Text{"Language"}:</span> <span title="$Text{"$Data{"Language"}"}">$Text{"$Data{"Language"}"}</span></li>
+<!-- dtl:block:Language -->
+
+<!-- dtl:block:ViewRating -->
+                <li>
+                    <span class="Key RatingLabel">$Text{"Rating"}:</span>
+<!-- dtl:block:RateStars -->
+                    <span class="RateStar">Star</span>
+<!-- dtl:block:RateStars -->
+<!-- dtl:block:RateStarsCount -->
+                    <span class="RateStarText" title="$QData{"Stars"} $Text{"out of 5"}">
+                        $QData{"Stars"} $Text{"out of 5"}
+                    </span>
+<!-- dtl:block:RateStarsCount -->
+                </li>
+<!-- dtl:block:ViewRating -->
+
+<!-- dtl:block:ViewVotes -->
+                <li><span class="Key">$Text{"Votes"}:</span> <span title="$QData{"Votes"}">$QData{"Votes"}</span></li>
+<!-- dtl:block:ViewVotes -->
+                <li><a href="$Env{"Baselink"}Action=CustomerFAQPrint;ItemID=$LQData{"ItemID"}" class="Print AsPopup" title="$Text{"Print"}">$Text{"Print"}</a></li>
+            </ul>
+            <div class="Clear"></div>
+        </div>
+
+        <div class="FAQPathCategory">
+            <h3>
+<!-- dtl:block:FAQPathCategoryElement -->
+                $Config{"FAQ::Explorer::Path::Separator"}
+                <a href="$Env{"Baselink"}Action=CustomerFAQExplorer;CategoryID=$LQData{"CategoryID"}">
+                    $QData{"Name"}
+                </a>
+<!-- dtl:block:FAQPathCategoryElement -->
+<!-- dtl:block:FAQPathItemElement -->
+                $Config{"FAQ::Explorer::Path::Separator"}
+                <a href="$Env{"Baselink"}Action=$Env{"Action"};CategoryID=$LQData{"CategoryID"};ItemID=$LQData{"ItemID"}">
+                    $QData{"Title"}
+                </a>
+<!-- dtl:block:FAQPathItemElement -->
+            </h3>
+        </div>
+        <div class="Clear"></div>
+        <ul id="Messages">
+            <li class="Customer Visible">
+                <div class="MessageHeader">
+                    <h3>$Text{"Details"}:</h3>
+                    <div class="Clear"></div>
+                </div>
+                <div class="Details">
+                    <div>
+                        <div class="FAQLabel">$Text{"Keywords"}:</div>
+
+<!-- dtl:block:Keywords -->
+                        <span class="Keyword" title="$Text{"Search for articles with keyword"}: $QData{"Keyword"}">
+                            <a href="$Env{"Baselink"}Action=CustomerFAQSearch;Subaction=Search;Keyword=$LQData{"Keyword"}">$QData{"Keyword"}</a>
+                        </span>
+<!-- dtl:block:Keywords -->
+
+                        <div class="Clear"></div>
+                    </div>
+
+<!-- dtl:block:AttachmentHeader -->
+                    <div class="Attachments">
+                        <div class="FAQLabel">$Text{"Attachment"}:</div>
+
+<!-- dtl:block:AttachmentRow -->
+                        <span class="DownloadAttachment" title="$Text{"Download Attachment"}">
+                            <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=DownloadAttachment;ItemID=$LQData{"ItemID"};FileID=$LQData{"FileID"}">
+                                $QData{"Filename"}
+                            </a>
+                            , $QData{"Filesize"}
+                        </span>
+<!-- dtl:block:AttachmentRow -->
+
+                    </div>
+<!-- dtl:block:AttachmentHeader -->
+
+                </div>
+            </li>
+
+<!-- dtl:block:FAQContent -->
+            <li class="Customer Visible">
+                <div class="MessageHeader">
+                    <h3>$Text{"$Data{"Caption"}"}:</h3>
+                    <div class="Clear"></div>
+                </div>
+                <div class="ArticleFAQContent">
+                    <div class="message">
+                        $Data{"Content"}
+                    </div>
+                </div>
+            </li>
+<!-- dtl:block:FAQContent -->
+
+        </ul>
+
+<!-- dtl:block:FAQVoting -->
+        <form action="$Env{"CGIHandle"}" method="post" enctype="multipart/form-data" name="FAQVote" class="PreventMultipleSubmits">
+            <div class="VotingBox Visible">
+                <div class="MessageHeader">
+                    <h3>$Text{"Rating"}:</h3>
+                    <div class="Clear"></div>
+                </div>
+                <div id="Messenger">
+                    <div class="SpacingTop"></div>
+                    <span class="VotingQuestion">$Text{"$Config{"FAQ::Item::Voting::QuestionLangKey"}"}</span>
+                    <div class="SpacingTop"></div>
+                    <div>
+                        <span class="RateLabelBefore">$Text{"not helpful"}</span>
+                    </div>
+
+<!-- dtl:block:FAQVotingRateRow -->
+                    <div id="RateButton$Data{"Value"}">
+                        <a class="RateButton $LQData{"RateClass"}" href="$Env{"Baselink"}Action=$Env{"Action"};ItemID=$LQData{"ItemID"};SelectedRate=$LQData{"Value"}">$QData{"Title"}</a>
+                    </div>
+<!-- dtl:block:FAQVotingRateRow -->
+
+                    <div>
+                        <span class="RateLabelAfter">$Text{"very helpful"}</span>
+                    </div>
+                    <input type="hidden" name="Action" value="CustomerFAQZoom"/>
+                    <input type="hidden" name="Subaction" value="Vote"/>
+                    <input type="hidden" name="CategoryID" value="$QData{"CategoryID"}"/>
+                    <input type="hidden" name="ItemID" value="$QData{"ItemID"}"/>
+                    <div class="ActionRow">
+
+<!-- dtl:block:FAQVotingSubmit -->
+                        <button type="submit" value="$Text{"Submit"}">$Text{"Submit"}</button>
+                        <input type="hidden" name="Rate" value="$QData{"SelectedRate"}"id="RateValue"/>
+<!-- dtl:block:FAQVotingSubmit -->
+
+                    </div>
+                </div>
+            </div>
+        </form>
+<!-- dtl:block:FAQVoting -->
+
+    </div>
+</div>
+
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">
+    $('a.AsPopup').bind('click', function (Event) {
+        Core.UI.Popup.OpenPopup($(this).attr('href'), 'TicketAction');
+        return false;
+    });
+</script>
+<!-- dtl:js_on_document_complete -->

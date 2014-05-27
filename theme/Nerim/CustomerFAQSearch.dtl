@@ -1,0 +1,179 @@
+# --
+# CustomerFAQSearch.dtl - provides HTML form for CustomerFAQSearch.pm
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerFAQSearch.dtl,v 1.9 2010/12/27 16:43:59 cr Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!-- dtl:block:Search -->
+    
+<div class="row">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="font-size:22px;color:#006bb3;" >$Text{"Profile"}</div>
+			<div class="panel-body">
+		        <form action="$Env{"CGIHandle"}" method="post" name="compose" class="form-horizontal" role="form" >
+		            <input type="hidden" name="Action" value="$Env{"Action"}"/>
+		            <input type="hidden" name="Subaction" value="LoadProfile"/>
+        			<div class="form-group">
+						<label for="Profile" class="col-sm-4 control-label">$Text{"Search template"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-search"></span>
+	                    		$Data{"ProfilesStrg"}
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+		            <div class="btn-group" style="float:right;" >
+					  <button type="submit" class="btn btn-sm btn-default" value="$Text{"Select"}" id="s0" name="SelectTemplate" >$Text{"Select"}</button>
+					  <button type="submit" class="btn btn-sm btn-danger" value="$Text{"Delete"}" id="s1" name="EraseTemplate" >$Text{"Delete"}</button>
+					  <button type="submit" class="btn btn-sm btn-primary" value="$Text{"Search"}" id="s2" name="SearchTemplate" >$Text{"Search"}</button>
+					</div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+					    $("#Profile").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+		        </form>
+		  	</div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="font-size:22px;color:#006bb3;" >$Config{"FAQ::FAQHook"}</div>
+			<div class="panel-body">
+	        	<form action="$Env{"CGIHandle"}" method="post" name="compose" class="form-horizontal" role="form" >
+	            	<input type="hidden" name="Action" value="$Env{"Action"}"/>
+	            	<input type="hidden" name="Subaction" value="Search"/>
+	    			<div class="form-group">
+						<label for="Number" class="col-sm-4 control-label">$Config{"FAQ::FAQHook"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-tag"></span>
+	                    		<input title="$Config{"FAQ::FAQHook"}" type="text" name="Number" id="Number" value="$QData{"Number"}" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block">$Text{"e. g. 10*5155 or 105658*"}</span>
+	                   	</div>
+	                </div>
+	                <hr />
+	                <div class="page-header">
+						<h3>$Text{"Fulltext search in FAQ articles (e. g. "John*n" or "Will*")"} <small> </small></h3>
+					</div>
+	    			<div class="form-group">
+						<label for="Fulltext" class="col-sm-4 control-label">$Text{"Fulltext"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-comment"></span>
+	                    		<input title="$Text{"Fulltext"}" type="text" id="FullText" name="Fulltext" value="$QData{"Fulltext"}" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+	    			<div class="form-group">
+						<label for="Title" class="col-sm-4 control-label">$Text{"Title"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-text-width"></span>
+	                    		<input title="$Text{"Title"}" type="text" id="Title" name="Title" value="$QData{"Title"}" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+	    			<div class="form-group">
+						<label for="Keyword" class="col-sm-4 control-label">$Text{"Keyword"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-certificate"></span>
+	                    		<input title="$Text{"Keyword"}" type="text" id="Keyword" name="Keyword" value="$QData{"Keyword"}" class="form-control" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+	<!-- dtl:block:Language -->
+	    			<div class="form-group">
+						<label for="LanguageIDs" class="col-sm-4 control-label">$Text{"Language"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-globe"></span>
+	                    		$Data{"LanguagesStrg"}
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+					    $("#LanguageIDs").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+	<!-- dtl:block:Language -->
+	    			<div class="form-group">
+						<label for="CategoryIDs" class="col-sm-4 control-label">$Text{"Category"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-tag"></span>
+	                    		$Data{"CategoriesStrg"}
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+					    $("#CategoryIDs").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+	                <hr />
+	                <div class="page-header">
+						<h3>$Text{"Search-Profile as Template?"} <small> </small></h3>
+					</div>
+	                <div class="form-group">
+	                	<label for="SaveProfile" class="col-sm-4 control-label">$Text{"Save as Template?"}</label>
+	                   	<div class="col-sm-8">
+	                    	<input title="Save as Template" type="checkbox" id="SaveProfile" name="SaveProfile" />
+	                    </div>
+	                </div>
+	    			<div class="form-group">
+						<label for="Profil" class="col-sm-4 control-label">$Text{"Template Name"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-star"></span>
+	                    		<input title="Pick a profil name" type="text" id="Profil" name="Profile" class="form-control" value="$QData{"Profile"}" />
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+	    			<div class="form-group">
+						<label for="ResultForm" class="col-sm-4 control-label">$Text{"Output to"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-share"></span>
+	                    		$Data{"ResultFormStrg"}
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+						$("#ResultForm").attr({"class":"form-control","style":"display:inline;width:120px;"});
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+	    			<div class="form-group">					
+	                    <div class="col-sm-8" style="width:100%;float:right;">
+	                    	<button id="Submit" type="submit" value="$Text{"Search"}" class="btn btn-primary" >$Text{"Search"}</button>
+	                    </div>
+	                </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">
+    Core.Customer.InitFocus();
+</script>
+<!-- dtl:js_on_document_complete -->
+<!-- dtl:block:Search -->

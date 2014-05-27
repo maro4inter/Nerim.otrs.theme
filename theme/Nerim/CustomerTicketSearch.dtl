@@ -1,0 +1,280 @@
+# --
+# CustomerTicketSearch.dtl - provides HTML form for CustomerTicketSearch.pm
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerTicketSearch.dtl,v 1.34.2.1 2011/02/01 23:33:49 cg Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!-- dtl:block:Search -->
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="font-size:22px;color:#006bb3;" >$Text{"Profile"}</div>
+			<div class="panel-body">
+		        <form action="$Env{"CGIHandle"}" method="post" name="compose" class="form-horizontal" role="form" >
+		            <input type="hidden" name="Action" value="$Env{"Action"}"/>
+		            <input type="hidden" name="Subaction" value="LoadProfile"/>
+        			<div class="form-group">
+						<label for="Profile" class="col-sm-4 control-label">$Text{"Search template"}</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-search"></span>
+	                    		$Data{"ProfilesStrg"}
+	                    	</div>
+	                    	<span class="help-block"></span>
+	                   	</div>
+	                </div>
+		            <div class="btn-group" style="float:right;" >
+					  <button type="submit" class="btn btn-sm btn-default" value="$Text{"Select"}" id="s0" name="SelectTemplate" >$Text{"Select"}</button>
+					  <button type="submit" class="btn btn-sm btn-danger" value="$Text{"Delete"}" id="s1" name="EraseTemplate" >$Text{"Delete"}</button>
+					  <button type="submit" class="btn btn-sm btn-primary" value="$Text{"Search"}" id="s2" name="SearchTemplate" >$Text{"Search"}</button>
+					</div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+					    $("#Profile").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+		        </form>
+		  	</div>
+		</div>	
+	</div>
+	
+	<div class="col-md-8">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="font-size:22px;color:#006bb3;" >$Config{"Ticket::Hook"}</div>
+		<div class="panel-body">
+        	<form action="$Env{"CGIHandle"}" method="post" name="compose" class="form-horizontal" role="form" >
+            <input type="hidden" name="Action" value="$Env{"Action"}"/>
+            <input type="hidden" name="Subaction" value="Search"/>
+    			<div class="form-group">
+					<label for="TicketNumber" class="col-sm-4 control-label">$Config{"Ticket::Hook"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-tag"></span>
+                    		<input title="$Config{"Ticket::Hook"}" type="text" name="TicketNumber" id="TicketNumber" value="$QData{"TicketNumber"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block">$Text{"e. g. 10*5155 or 105658*"}</span>
+                   	</div>
+                </div>
+    			<div class="form-group">
+					<label for="CustomerID" class="col-sm-4 control-label">$Text{"CustomerID"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-user"></span>
+                    		<input title="$Text{"Customer ID"}" type="text" id="CustomerID" name="CustomerID" value="$QData{"CustomerID"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+                <hr />
+                <div class="page-header">
+					<h3>$Text{"Fulltext search in tickets (e. g. "John*n" or "Will*")"} <small> </small></h3>
+				</div>
+    			<div class="form-group">
+					<label for="From" class="col-sm-4 control-label">$Text{"From"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-share"></span>
+                    		<input title="$Text{"Sender"}" type="text" id="From" name="From" value="$QData{"From"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+    			<div class="form-group">
+					<label for="To" class="col-sm-4 control-label">$Text{"To"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-eye-open"></span>
+                    		<input title="$Text{"Recipient"}" type="text" id="To" name="To" value="$QData{"To"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>              
+    			<div class="form-group">
+					<label for="Cc" class="col-sm-4 control-label">$Text{"Cc"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-eye-close"></span>
+                    		<input title="$Text{"Carbon Copy"}" type="text" id="Cc" name="Cc" value="$QData{"Cc"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>             
+    			<div class="form-group">
+					<label for="Subject" class="col-sm-4 control-label">$Text{"Subject"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-text-width"></span>
+                    		<input title="$Text{"Subject"}" type="text" id="Subject" name="Subject" value="$QData{"Subject"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>            
+    			<div class="form-group">
+					<label for="Body" class="col-sm-4 control-label">$Text{"Text"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-comment"></span>
+                    		<input title="$Text{"Text"}" type="text" id="Body" name="Body" value="$QData{"Body"}" class="form-control" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+                
+                
+                
+                <!-- pas encore responsive -->
+<!-- dtl:block:FreeText -->
+                <hr />
+                <div>
+                    $Data{"TicketFreeKeyField"}
+                    $Data{"TicketFreeTextField"}
+                </div>
+                <div class="Clear"></div>
+<!-- dtl:block:FreeText -->
+<!-- dtl:block:FreeTime -->
+				<hr />
+                <div>
+                    <label for ="TicketFreeTime$QData{"Count"}">$Data{"TicketFreeTimeKey"} ($Text{"Between"})</label>
+                    <input type="checkbox" id="TicketFreeTime$QData{"Count"}" name="TicketFreeTime$QData{"Count"}" value="checked" $QData{"TicketFreeTime"}/>
+                    $Data{"TicketFreeTimeStart"} $Text{"and"} $Data{"TicketFreeTimeStop"} $Data{"TicketFreeTime"}
+                </div>
+                <div class="Clear"></div>
+<!-- dtl:block:FreeTime -->
+				<!-- pas encore responsive -->
+				
+				
+				
+				<hr />
+    			<div class="form-group">
+					<label for="PriorityIDs" class="col-sm-4 control-label">$Text{"Priority"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-sort-by-attributes"></span>
+                    		$Data{"PrioritiesStrg"}
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+    			<div class="form-group">
+					<label for="StateIDs" class="col-sm-4 control-label">$Text{"State"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-sort"></span>
+                    		$Data{"StatesStrg"}
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+				<!--dtl:js_on_document_complete-->
+				<script type="text/javascript">//<![CDATA[
+				    $("#PriorityIDs,#StateIDs").attr("class","form-control");
+				//]]></script>
+				<!--dtl:js_on_document_complete-->
+                <hr />                
+                <div class="page-header">
+					<h3>$Text{"Time restrictions"} <small> </small></h3>
+				</div>
+                <div>
+                    <input title="No time settings" type="radio"  id="NoTimeSet" name="TimeSearchType" value="" $Data{"TimeSearchType::None"} />
+                    <label for="NoTimeSet">$Text{"All"}</label>
+                </div>
+                <div>
+                    <input title="Specific date" type="radio" id="Date" name="TimeSearchType"  value="TimePoint" $Data{"TimeSearchType::TimePoint"} />
+                    <label for="Date">$Text{"Only tickets created"}</label>
+                    <br>
+                    <p><div class="row">
+						<div class="col-md-2">
+                    		$Data{"TicketCreateTimePointStart"}
+                    	</div>
+						<div class="col-md-2">
+                    		$Data{"TicketCreateTimePoint"}
+                    	</div>
+						<div class="col-md-2">
+                    		$Data{"TicketCreateTimePointFormat"}
+                    	</div>
+                    </div></p>
+                </div>
+				<!--dtl:js_on_document_complete-->
+				<script type="text/javascript">//<![CDATA[
+				    $("#TicketCreateTimePointStart,#TicketCreateTimePoint,#TicketCreateTimePointFormat").attr({"class":"form-control","style":"display:inline;width:90px;"});
+				//]]></script>
+				<!--dtl:js_on_document_complete-->
+                <div>
+                    <input title="Date range" type="radio" id="DateRange" name="TimeSearchType" value="TimeSlot" $Data{"TimeSearchType::TimeSlot"} />
+                    <label for="DateRange">$Text{"Only tickets created between"}</label>
+                    <br>
+                    <p><div class="row">
+						<div class="col-md-5">
+                    		$Data{"TicketCreateTimeStart"}
+                    	</div>
+						<div class="col-md-1">
+                     		<b>$Text{"and"}</b>
+                    	</div>
+						<div class="col-md-5">
+                    		$Data{"TicketCreateTimeStop"}
+                    	</div>
+                    </div></p> 
+                </div>
+				<!--dtl:js_on_document_complete-->
+				<script type="text/javascript">//<![CDATA[
+				    $(".TooltipErrorMessage").hide();
+					$("#TicketCreateTimeStartDay,#TicketCreateTimeStartMonth,#TicketCreateTimeStartYear,#TicketCreateTimeStopDay,#TicketCreateTimeStopMonth,#TicketCreateTimeStopYear").attr({"class":"form-control","style":"display:inline;width:90px;"});
+				//]]></script>
+				<!--dtl:js_on_document_complete-->
+				<hr />                
+                <div class="page-header">
+					<h3>$Text{"Search-Profile as Template?"} <small> </small></h3>
+				</div>
+                <div class="form-group">
+                	<label for="SaveProfile" class="col-sm-4 control-label">$Text{"Save as Template?"}</label>
+                   	<div class="col-sm-8">
+                    	<input title="Save as Template" type="checkbox" id="SaveProfile" name="SaveProfile" />
+                    </div>
+                </div>
+    			<div class="form-group">
+					<label for="Profil" class="col-sm-4 control-label">$Text{"Template Name"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-star"></span>
+                    		<input title="Pick a profil name" type="text" id="Profil" name="Profile" class="form-control" value="$QData{"Profile"}" />
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+    			<div class="form-group">
+					<label for="ResultForm" class="col-sm-4 control-label">$Text{"Output to"}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon glyphicon glyphicon-share"></span>
+                    		$Data{"ResultFormStrg"}
+                    	</div>
+                    	<span class="help-block"></span>
+                   	</div>
+                </div>
+				<!--dtl:js_on_document_complete-->
+				<script type="text/javascript">//<![CDATA[
+					$("#ResultForm").attr({"class":"form-control","style":"display:inline;width:120px;"});
+				//]]></script>
+				<!--dtl:js_on_document_complete-->
+    			<div class="form-group">					
+                    <div class="col-sm-8" style="width:100%;float:right;">
+                    	<button id="Submit" type="submit" value="$Text{"Search"}" class="btn btn-primary" >$Text{"Search"}</button>
+                    </div>
+                </div>
+        	</form>        
+		</div>
+	</div>
+	</div>
+</div>
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">
+    Core.Customer.InitFocus();
+</script>
+<!-- dtl:js_on_document_complete -->
+<!-- dtl:block:Search -->

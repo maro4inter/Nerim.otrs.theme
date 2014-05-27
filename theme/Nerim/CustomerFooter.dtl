@@ -22,10 +22,14 @@
 <!-- Latest compiled and minified JavaScript -->
 	<script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/jquery-1.11.1.min.js"></script>
 	<script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/jquery-migrate-1.2.1.min.js"></script>
-<script>
-	//var $j = jQuery.noConflict();
-</script>
+	<script>
+		//var $j = jQuery.noConflict();
+	</script>
 	<script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/bootstrap.min.js"></script>
+	<script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/bootstrap.file-input.js"></script>
+	<script>
+		jQuery('input[type=file]').bootstrapFileInput();
+	</script>
 <!-- dtl:block:CommonJS -->
     <script type="text/javascript" src="$Config{"Frontend::JavaScriptPath"}$QData{"JSDirectory"}$QData{"Filename"}"></script>
 <!-- dtl:block:CommonJS -->

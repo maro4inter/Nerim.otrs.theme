@@ -1,0 +1,295 @@
+# --
+# CustomerTicketZoom.dtl - provides HTML TicketZoom for CustomerTicketZoom.pm
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerTicketZoom.dtl,v 1.106 2011/01/12 10:29:16 martin Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+<div id="MainBox" class="TicketZoom ARIARoleMain">
+<!-- dtl:block:Back -->
+    <div class="ActionRow">
+		<ul class="pager">
+			<li class="previous"><a href="$Env{"Baselink"}$Env{"LastScreenOverview"}">&larr; $Text{"Back"}</a></li>
+			<!--<li class="next"><a href="#">$Text{"Forward"} &rarr;</a></li>-->
+		</ul>
+    </div>
+<!-- dtl:block:Back -->
+    <div class="Content">
+        <div class="TicketHeader">
+			<div class="bs-callout bs-callout-info">
+	    		<span title="$Text{"$Data{"StateTypeGeneric"}"}" id="Flag" class="label label-success">$Text{"$Data{"StateTypeGeneric"}"}</span>&nbsp;&nbsp;<span class="label label-info"> $QData{"TicketNumber"}</span>
+				<div class="btn-group" style="position:relative;float:right;" >
+					<button class="btn btn-info btn-xs dropdown-toggle " type="button" data-toggle="dropdown">
+				    	$Text{"Autres  "}<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu pull-right">
+<!-- dtl:block:Type -->
+                		<li><a href="javascript:return false;" >$QData{"Type","18"}</a></li>
+<!-- dtl:block:Type -->
+<!-- dtl:block:Service -->
+                		<li><a href="javascript:return false;" >$Quote{"$Text{"$Data{"Service"}"}","18"}</a></li>
+<!-- dtl:block:Service -->
+<!-- dtl:block:SLA -->
+                		<li><a href="javascript:return false;" >$Quote{"$Text{"$Data{"SLA"}"}","18"}</a></li>
+<!-- dtl:block:SLA -->
+<!-- dtl:block:State -->
+                		<li><a href="javascript:return false;" >$Quote{"$Text{"$Data{"State"}"}","18"}</a></li>
+<!-- dtl:block:State -->
+<!-- dtl:block:Priority -->
+                		<li><a href="javascript:return false;" >$Quote{"$Text{"$Data{"Priority"}"}","18"}</a></li>
+<!-- dtl:block:Priority -->
+<!-- dtl:block:Queue -->
+                		<li><a href="javascript:return false;" >$QData{"Queue","18"}</a></li>
+<!-- dtl:block:Queue -->
+# use this if you want to show TicketFreeKey1-16 and TicketFreeText1-16
+<!-- dtl:block:TicketFreeText -->
+                		<li><a href="javascript:return false;" >$QData{"TicketFreeText","20"}</a></li>
+<!-- dtl:block:TicketFreeText -->
+#<!-- dtl:block:TicketFreeText1 -->
+#                    	<li><a href="javascript:return false;" >$QData{"TicketFreeText1","20"}</a></li>
+#<!-- dtl:block:TicketFreeText1 -->
+#<!-- dtl:block:TicketFreeText2 -->
+#                    	<li><a href="javascript:return false;" >$QData{"TicketFreeText2","20"}</a></li>
+#<!-- dtl:block:TicketFreeText2 -->
+# use this if you want to show TicketFreeTime1-6
+<!-- dtl:block:TicketFreeTime -->
+                		<li><a href="javascript:return false;" >$TimeShort{"$QData{"TicketFreeTime"}"}</a></li>
+<!-- dtl:block:TicketFreeTime -->
+#<!-- dtl:block:TicketFreeTime1 -->
+#                    	<li><a href="javascript:return false;" >$TimeShort{"$QData{"TicketFreeTime1"}"}</a></li>
+#<!-- dtl:block:TicketFreeTime1 -->
+#<!-- dtl:block:TicketFreeTime2 -->
+#                    	<li><a href="javascript:return false;" >$TimeShort{"$QData{"TicketFreeTime2"}"}</a></li>
+#<!-- dtl:block:TicketFreeTime2 -->
+<!-- dtl:block:Print -->
+                		<li><a href="$Env{"Baselink"}Action=CustomerTicketPrint;TicketID=$LQData{"TicketID"}" target="_blank" title="$Text{"Print"}">$Text{"Print"}</a></li>
+<!-- dtl:block:Print -->
+					</ul>
+				</div>
+				<p>
+	    			<h1>
+	    				$QData{"Title","65"}
+	    			</h1>
+	    		</p>
+	  		</div>
+        </div>
+        <hr />
+            <ul id="Messages" class="list-group" style="list-style-type:none;" >
+            <!-- dtl:block:Article -->
+            	<li class="$QData{"SenderType"} $QData{"ArticleType"} $QData{"Class"}">
+					<div class="panel panel-primary">
+					  <div class="panel-heading" >
+					    	<b class="panel-title">								
+								<!-- dtl:block:ArticleContracted -->
+									<h4><a  style="color:#fff;" href="$Env{"Baselink"}Action=$Env{"Action"};TicketID=$LQData{"TicketID"};ArticleID=$LQData{"ArticleID"}">$QData{"FromRealname","60"} &ndash; <span title="$Text{"Expand article"}..." >$QData{"Subject","180"}</span></a></h4>
+								<!-- dtl:block:ArticleContracted -->
+								<!-- dtl:block:ArticleExpanded -->
+									<h4><a  style="color:#fff;" href="$Env{"Baselink"}Action=$Env{"Action"};TicketID=$LQData{"TicketID"};ArticleID=$LQData{"ArticleID"}">$QData{"FromRealname","60"} &ndash; <span title="$QData{"Subject"}">$QData{"Subject","180"}</span></a></h4>
+								<!-- dtl:block:ArticleExpanded -->
+							</b>
+							<p style="margin-top:20px;line-height:1.8em;" >
+									<label class="label label-success" title="$TimeLong{"$QData{"Created"}"}">$Text{"Age"} : $Data{"Age"}</label><br>
+								<!-- dtl:block:ArticleRow -->
+                            		<label class="label label-default" title="$QData{"Value"}" >$Text{"$Data{"Key"}"} : $QData{"Realname","30"}</label>
+								<!-- dtl:block:ArticleRow -->
+                            		<br><label class="label label-danger" title="$QData{"Subject"}" >$Text{"Subject"} : $QData{"Subject","32"}</label>
+							</p>
+					  </div>
+					  <div class="panel-body" >
+					  	<input type="hidden" name="ArticleState" value="untouched" />                            	
+# show the ArticleFreeKey1-3 and ArticleFreeText1-3
+							<!-- dtl:block:ArticleFreeText -->
+	                            &nbsp;&nbsp;<label class="label label-warning" title="$QData{"Value"}" >$QData{"Key", "11"} : $QData{"Value","160"}</label>
+							<!-- dtl:block:ArticleFreeText -->							
+									
+							<!-- dtl:block:ArticleAttachment -->
+	                            <blockquote style="font-size:14px;" >
+		                            <!--<label class="label label-info">$Text{"$Data{"Key"}"}</label>-->
+		                            <p>
+										<!-- dtl:block:ArticleAttachmentRow -->
+		                            		<!--<span class="DownloadAttachment" title="$QData{"Filename"} - $QData{"Filesize"}">-->
+												<!-- dtl:block:ArticleAttachmentRowLink -->
+							                		<a href="$Data{"Link"}" $Data{"Target"} title="$Text{"$Data{"Action"}"}">$QData{"Filename"}</a>&nbsp;&nbsp;<label class="label label-primary">$QData{"Filesize"}</label><br>
+												<!-- dtl:block:ArticleAttachmentRowLink -->
+													<br>
+												<!-- dtl:block:ArticleAttachmentRowNoLink -->
+							                		$QData{"Filename"}&nbsp;&nbsp;<label class="label label-primary">$QData{"Filesize"}</label>
+												<!-- dtl:block:ArticleAttachmentRowNoLink -->
+						                	<!--</span>-->
+										<!-- dtl:block:ArticleAttachmentRow -->
+									</p>
+								</blockquote>								
+								<hr />
+							<!-- dtl:block:ArticleAttachment -->
+								<blockquote style="font-size:18px;border-color:#" >
+										<!-- dtl:block:BodyPlain -->
+				                            $Data{"BodyNote"}
+				                            <div class="ArticleBody">
+				                                $Data{"Body"}
+				                            </div>
+										<!-- dtl:block:BodyPlain -->
+										
+										<!-- dtl:block:BodyHTMLLoad -->
+											<div class="VisibleFrameHeader" src="$Env{"Baselink"}Action=CustomerTicketAttachment;Subaction=HTMLView;ArticleID=$QData{"ArticleID"};FileID=$QData{"AttachmentIDOfHTMLBody"}" ></div>
+			                            	<!--<iframe title="about:blank" frameborder="0" id="VisibleFrame" src="$Env{"Baselink"}Action=CustomerTicketAttachment;Subaction=HTMLView;ArticleID=$QData{"ArticleID"};FileID=$QData{"AttachmentIDOfHTMLBody"}"></iframe>-->
+										<!-- dtl:block:BodyHTMLLoad -->
+										
+										<!-- dtl:block:BodyHTMLPlaceholder -->
+											<div class="VisibleFrameBody" src="$Env{"Baselink"}Action=CustomerTicketAttachment;Subaction=HTMLView;ArticleID=$QData{"ArticleID"};FileID=$QData{"AttachmentIDOfHTMLBody"}" ></div>
+			                            	<!--<iframe src="about:blank" frameborder="0" title="$Env{"Baselink"}Action=CustomerTicketAttachment;Subaction=HTMLView;ArticleID=$QData{"ArticleID"};FileID=$QData{"AttachmentIDOfHTMLBody"}"></iframe>-->
+										<!-- dtl:block:BodyHTMLPlaceholder -->
+								</blockquote>
+					  </div>
+					</div>
+                </li>
+			<!-- dtl:block:Article -->
+            </ul> <!-- /Messages -->
+        <hr />
+        <div class="row">
+		<div class="col-xs-10 col-md-6">
+        <form class="form-horizontal" role="form" action="$Env{"CGIHandle"}#FollowUp" method="post" enctype="multipart/form-data" name="compose" >
+        	<input type="hidden" name="Action" value="CustomerTicketZoom" />
+            <input type="hidden" name="Subaction" value="Store" />
+            <input type="hidden" name="TicketID" value="$QData{"TicketID"}" />
+            <input type="hidden" name="ArticleID" value="$QData{"ArticleID"}" />
+            <input type="hidden" name="FormID" value="$QData{"FormID"}" />
+			<!-- dtl:block:FollowUp -->
+            <div id="FollowUp" class="$QData{"FollowUpVisible"}">
+                <div id="Messenger">
+                    <!--<input class="DontPrint" type="text" name="Subject" id="Subject" value="$QData{"Subject"}" />-->                    
+					<div class="form-group">
+						<label for="Subject" class="col-sm-2 control-label">$Text{"Subject"}</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-tag"></span>
+								<input title="Subject" type="text" id="Subject" name="Subject" value="$QData{"Subject"}" class="form-control" required />
+							</div>
+							<span class="help-block" style="color:#a94442;" >$Text{"This field is required."}</span>
+						</div>
+					</div>
+#<!-- dtl:block:RichText-->
+#                    $Include{"CustomerRichTextEditor"}
+#<!-- dtl:block:RichText-->
+                    <!--<textarea title="$Text{"Reply"}" id="RichText" class="RichText DontPrint Validate_RequiredRichText $QData{"RichTextInvalid"}" name="Body" rows="15" cols="$Config{"Ticket::Frontend::TextAreaNote"}">$QData{"Body"}</textarea>
+                    <div id="RichTextError" class="TooltipErrorMessage">
+                        <p>$Text{"This field is required."}</p>
+                    </div>
+                    <div id="RichTextServerError" class="TooltipErrorMessage NoJavaScriptMessage$QData{"RichTextInvalid"}">
+                        <p>$Text{"This field is required."}</p>
+                    </div>-->
+					<div class="form-group">
+						<label for="RichText" class="col-sm-2 control-label">$Text{"Text"}</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<input type="hidden" id="RichText" name="Body" value="$QData{"Body"}" />
+								<!-- dtl:block:RichText -->
+									$Include{"CustomerRichTextEditor"}
+								<!-- dtl:block:RichText -->											
+								<!--<span class="input-group-addon glyphicon glyphicon-envelope"></span>
+								<textarea title="$Text{"Reply"}" id="RichText" name="Body" rows="20" cols="$Config{"Ticket::Frontend::TextAreaNote"}" class="form-control" required >$QData{"Body"}</textarea>-->
+							</div>
+							<span class="help-block" style="color:#a94442;" >$Text{"This field is required."}</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<!--<label for="Attachment" class="col-sm-2 control-label">$Text{"Attachment"}</label>-->
+						<label for="Attachment" class="col-sm-2 control-label">$Text{"Fichiers"}</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<input name="file_upload" id="Attachment" title="Attachment" type="file" class="btn btn-info" />
+								<input type="hidden" id="AttachmentUpload" name="AttachmentUpload" value="0" />
+								<!--dtl:js_on_document_complete-->
+									<script type="text/javascript">//<![CDATA[
+										$('#Attachment').bind('change', function (Event) {
+											var $Form = $('#Attachment').closest('form');
+											//Core.Form.Validate.DisableValidation($Form);
+											$Form.find('#AttachmentUpload').val('1').end().submit();
+										});
+									//]]></script>
+								<!--dtl:js_on_document_complete-->
+							</div>
+							<!-- dtl:block:FollowUpAttachment -->
+								<div class="Attachment"><hr />
+									<h5> $QData{"Filename"} <span class="label label-success">$QData{"Filesize"}</span></h5>
+									<button type="submit" name="AttachmentDelete$QData{"FileID"}" value="$Text{"Delete"}" class="btn btn-danger btn-sm DeleteFiles" >$Text{"Delete"}</button>
+									<!--dtl:js_on_document_complete-->
+										<script type="text/javascript">//<![CDATA[
+											$('#AttachmentDelete$QData{"FileID"}').bind('click', function () {
+												Core.Form.Validate.DisableValidation($('#AttachmentDelete$QData{"FileID"}').closest('form'));
+											});
+										//]]></script>
+									<!--dtl:js_on_document_complete-->
+								</div>
+							<!-- dtl:block:FollowUpAttachment -->
+							<span class="help-block" style="color:#a94442;" ></span>
+						</div>
+					</div>
+					<!-- dtl:block:FollowUpState -->
+					<div class="form-group">
+						<label for="StateID" class="col-sm-2 control-label">$Text{"Etat"}</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-star"></span>
+								$Data{"NextStatesStrg"}
+							</div>
+							<span class="help-block" style="color:#a94442;" ></span>
+						</div>
+					</div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+						$("#StateID").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+					<!-- dtl:block:FollowUpState -->
+					<!-- dtl:block:FollowUpPriority -->			                
+					<div class="form-group">
+						<label for="PriorityID" class="col-sm-2 control-label">$Text{"Priority"}</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon glyphicon glyphicon-signal"></span>
+								$Data{"PriorityStrg"}
+							</div>
+							<span class="help-block" style="color:#a94442;" ></span>
+						</div>
+					</div>
+					<!--dtl:js_on_document_complete-->
+					<script type="text/javascript">//<![CDATA[
+						$("#PriorityID").attr("class","form-control");
+					//]]></script>
+					<!--dtl:js_on_document_complete-->
+					<!-- dtl:block:FollowUpPriority -->
+					<hr />
+					<div class="form-group">
+						<div class="col-sm-10">
+							<div class="input-group">
+								<button type="submit" value="$Text{"Submit"}" class="btn btn-success" >$Text{"Submit"}</button>
+								&nbsp;&nbsp;&nbsp;<a href="$Env{"Baselink"}$Env{"LastScreenOverview"}" class="btn btn-danger" >$Text{"Cancel"}</a>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+			<!-- dtl:block:FollowUp -->
+		</form>
+		</div>
+		</div>
+    </div>
+</div>
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">
+    Core.Customer.TicketZoom.Init();
+    $('a.AsPopup').bind('click', function (Event) {
+        Core.UI.Popup.OpenPopup($(this).attr('href'), 'TicketAction');
+        return false;
+    });
+    $('div.VisibleFrameHeader').each(function(){
+    	$(this).load($(this).attr('src'));
+    });
+    $('div.VisibleFrameBody').each(function(){
+    	$(this).load($(this).attr('src'));
+    });
+</script>
+<!-- dtl:js_on_document_complete -->

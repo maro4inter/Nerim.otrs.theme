@@ -89,11 +89,9 @@ $Include{"Copyright"}
     <![endif]-->
 <!-- dtl:block:ModuleCSS_IE8 -->
 
-    <link rel="stylesheet" type="text/css" href="$Config{"Frontend::WebPath"}skins/Customer/default/css/thirdparty/ui-theme/jquery-ui.css" />
+    <!--<link rel="stylesheet" type="text/css" href="$Config{"Frontend::WebPath"}skins/Customer/default/css/thirdparty/ui-theme/jquery-ui.css" />-->
 
-	
-	
-
+	<!--<link rel="stylesheet" type="text/css" href="$Config{"Frontend::WebPath"}skins/Customer/Nerim/css/normalize.css" />-->
 	<!-- Bootstrap core CSS -->
 		<!-- Latest compiled and minified CSS -->
 			<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
@@ -101,11 +99,13 @@ $Include{"Copyright"}
 		<!-- Optional theme -->
 			<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
 			<link rel="stylesheet" href="$Config{"Frontend::WebPath"}skins/Customer/Nerim/css/bootstrap-theme.min.css">
+			<link rel="stylesheet" href="$Config{"Frontend::WebPath"}skins/Customer/Nerim/css/themes/quill.snow.css" />
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	<!--<script type="text/javascript" src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/modernizr.custom.48092.js"></script>-->
     <style type="text/css">
 		html {
 			position: relative;
@@ -184,11 +184,92 @@ $Include{"Copyright"}
 			color: #555;
 			background-color: #e7e7e7;
 		}
+		.nav-pills>li>a.Selected, .nav-pills>li>a.Selected:hover, .nav-pills>li>a.Selected:focus {
+			color: #fff;
+			background-color: #428bca;
+		}
 		textarea {
 			resize: none;
 			/*width:325px !important;
-			height:120px !important;
-			outline:none !important;*/
+			height:120px !important;*/
+			outline:none !important;
+		}
+		.advanced-wrapper {
+			/*border: 1px solid #ccc;*/
+			/*border: 1px solid #0064C1;*/
+			float: left;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			padding: 6px 12px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #555;
+			background-color: #fff;
+			background-image: none;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		}
+		.advanced-wrapper:hover {
+			border-color: #66afe9;
+			outline: 0;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+		}
+		.advanced-wrapper {
+			width: 100%;
+		}
+		.editor-container {
+			height: 500px;
+		}
+		.toolbar-container {
+			border-bottom: 1px solid #ccc;
+		}
+		.basic-wrapper .toolbar-container .sc-active,
+		.basic-wrapper .toolbar-container button:hover {
+			color: #008000;
+			font-weight: bold;
+		}
+		.bs-callout { 
+			margin: 20px 0;
+			padding: 20px;
+			border-left: 3px solid #eee;
+		}
+		.bs-callout-info {
+			background-color: #f4f8fa;
+			border-color: #5bc0de;
+		}
+		.bs-callout-info h4 {
+			color: #5bc0de;
+		}
+		.bs-callout h4 {
+			margin-top: 0;
+			margin-bottom: 5px;
+		}
+		.bs-callout-warning {
+			background-color: #fcf8f2;
+			border-color: #f0ad4e;
+		}
+		.bs-callout-warning h4 {
+			color: #f0ad4e;
+		}
+		.bs-callout h4 {
+			margin-top: 0;
+			margin-bottom: 5px;
+		}
+		.bs-callout-danger {
+			background-color: #fdf7f7;
+			border-color: #d9534f;
+		}
+		.bs-callout-danger h4 {
+			color: #d9534f;
+		}
+		.bs-callout h4 {
+			margin-top: 0;
+			margin-bottom: 5px;
 		}
 	</style>
 </head>

@@ -1,0 +1,173 @@
+# --
+# CustomerRichTextEditor.dtl - provides Rich Text Editor for the customer interface
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerRichTextEditor.dtl,v 1.4 2010/11/23 12:40:08 mn Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!--<script src="$Config{"Frontend::RichTextPath"}ckeditor.js" type="text/javascript"></script>-->
+<!-- dtl:js_on_document_complete -->
+<!--<script type="text/javascript">//<![CDATA[
+    Core.Config.Set('RichText.Width', '$Config{"Frontend::RichTextWidth"}');
+    Core.Config.Set('RichText.Height', '$Config{"Frontend::RichTextHeight"}');
+    Core.Config.Set('RichText.TextDir', '$Env{"TextDirection"}');
+    Core.Config.Set('RichText.SpellChecker', '$Env{"BrowserSpellCheckerInline"}');
+    Core.Config.Set('RichText.EditingAreaCSS', 'body { $Config{"Frontend::RichText::DefaultCSS"} }');
+    Core.Config.Set('RichText.ToolbarFull', [
+        ['Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Link', 'Unlink', '-', 'Image', 'HorizontalRule', '-', 'Undo', 'Redo', '-', 'Find', 'SpellCheck'],
+        '/',
+        ['Format', 'Font', 'FontSize', '-', 'TextColor', 'BGColor', 'RemoveFormat', '-']
+    ]);
+    Core.Config.Set('RichText.ToolbarSimple', [
+        ['Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Link', 'Unlink', '-', 'HorizontalRule', '-', 'Undo', 'Redo', '-', 'Find', 'SpellCheck'],
+        '/',
+        ['Format', 'Font', 'FontSize', '-', 'TextColor', 'BGColor', 'RemoveFormat', '-']
+    ]);
+    Core.Config.Set('RichText.PictureUploadAction', '$QData{"RichTextPictureUploadAction"}');
+    Core.UI.RichTextEditor.InitAll();
+//]]></script>-->
+<!-- dtl:js_on_document_complete -->
+
+
+    <div class="advanced-wrapper">
+        <div class="toolbar-container"><span class="sc-format-group">
+            <select title="Font" class="sc-font">
+              <option value="sans-serif" selected>Sans Serif</option>
+              <option value="serif">Serif</option>
+              <option value="monospace">Monospace</option>
+            </select>
+            <select title="Size" class="sc-size">
+              <option value="10px">Small</option>
+              <option value="13px" selected>Normal</option>
+              <option value="18px">Large</option>
+              <option value="32px">Huge</option>
+            </select></span><span class="sc-format-group"><span title="Bold" class="sc-format-button sc-bold"></span><span class="sc-format-separator"></span><span title="Italic" class="sc-format-button sc-italic"></span><span class="sc-format-separator"></span><span title="Underline" class="sc-format-button sc-underline"></span></span><span class="sc-format-group">
+            <select title="Text Color" class="sc-color">
+              <option value="rgb(0, 0, 0)" selected></option>
+              <option value="rgb(230, 0, 0)"></option>
+              <option value="rgb(255, 153, 0)"></option>
+              <option value="rgb(255, 255, 0)"></option>
+              <option value="rgb(0, 138, 0)"></option>
+              <option value="rgb(0, 102, 204)"></option>
+              <option value="rgb(153, 51, 255)"></option>
+              <option value="rgb(255, 255, 255)"></option>
+              <option value="rgb(250, 204, 204)"></option>
+              <option value="rgb(255, 235, 204)"></option>
+              <option value="rgb(255, 255, 204)"></option>
+              <option value="rgb(204, 232, 204)"></option>
+              <option value="rgb(204, 224, 245)"></option>
+              <option value="rgb(235, 214, 255)"></option>
+              <option value="rgb(187, 187, 187)"></option>
+              <option value="rgb(240, 102, 102)"></option>
+              <option value="rgb(255, 194, 102)"></option>
+              <option value="rgb(255, 255, 102)"></option>
+              <option value="rgb(102, 185, 102)"></option>
+              <option value="rgb(102, 163, 224)"></option>
+              <option value="rgb(194, 133, 255)"></option>
+              <option value="rgb(136, 136, 136)"></option>
+              <option value="rgb(161, 0, 0)"></option>
+              <option value="rgb(178, 107, 0)"></option>
+              <option value="rgb(178, 178, 0)"></option>
+              <option value="rgb(0, 97, 0)"></option>
+              <option value="rgb(0, 71, 178)"></option>
+              <option value="rgb(107, 36, 178)"></option>
+              <option value="rgb(68, 68, 68)"></option>
+              <option value="rgb(92, 0, 0)"></option>
+              <option value="rgb(102, 61, 0)"></option>
+              <option value="rgb(102, 102, 0)"></option>
+              <option value="rgb(0, 55, 0)"></option>
+              <option value="rgb(0, 41, 102)"></option>
+              <option value="rgb(61, 20, 102)"></option>
+            </select><span class="sc-format-separator"></span>
+            <select title="Background Color" class="sc-background">
+              <option value="rgb(0, 0, 0)"></option>
+              <option value="rgb(230, 0, 0)"></option>
+              <option value="rgb(255, 153, 0)"></option>
+              <option value="rgb(255, 255, 0)"></option>
+              <option value="rgb(0, 138, 0)"></option>
+              <option value="rgb(0, 102, 204)"></option>
+              <option value="rgb(153, 51, 255)"></option>
+              <option value="rgb(255, 255, 255)" selected></option>
+              <option value="rgb(250, 204, 204)"></option>
+              <option value="rgb(255, 235, 204)"></option>
+              <option value="rgb(255, 255, 204)"></option>
+              <option value="rgb(204, 232, 204)"></option>
+              <option value="rgb(204, 224, 245)"></option>
+              <option value="rgb(235, 214, 255)"></option>
+              <option value="rgb(187, 187, 187)"></option>
+              <option value="rgb(240, 102, 102)"></option>
+              <option value="rgb(255, 194, 102)"></option>
+              <option value="rgb(255, 255, 102)"></option>
+              <option value="rgb(102, 185, 102)"></option>
+              <option value="rgb(102, 163, 224)"></option>
+              <option value="rgb(194, 133, 255)"></option>
+              <option value="rgb(136, 136, 136)"></option>
+              <option value="rgb(161, 0, 0)"></option>
+              <option value="rgb(178, 107, 0)"></option>
+              <option value="rgb(178, 178, 0)"></option>
+              <option value="rgb(0, 97, 0)"></option>
+              <option value="rgb(0, 71, 178)"></option>
+              <option value="rgb(107, 36, 178)"></option>
+              <option value="rgb(68, 68, 68)"></option>
+              <option value="rgb(92, 0, 0)"></option>
+              <option value="rgb(102, 61, 0)"></option>
+              <option value="rgb(102, 102, 0)"></option>
+              <option value="rgb(0, 55, 0)"></option>
+              <option value="rgb(0, 41, 102)"></option>
+              <option value="rgb(61, 20, 102)"></option>
+            </select><span class="sc-format-separator"></span>
+            <select title="Text Alignment" class="sc-align">
+              <option value="left" selected></option>
+              <option value="center"></option>
+              <option value="right"></option>
+              <option value="justify"></option>
+            </select></span>
+			<!--<span class="sc-format-group">
+				<span title="Link" class="sc-format-button sc-link"></span>
+				<span class="sc-format-separator"></span>
+				<span title="Image" class="sc-format-button sc-image"></span>
+			</span>
+			<span class="sc-format-group">
+				<span title="Authorship" class="sc-format-button sc-authorship"></span>
+			</span>-->
+		</div>
+        <div class="editor-container" id="RichText" name="Body" ></div>
+    </div>
+    <script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/jquery-1.11.1.min.js"></script>
+    <script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="$Config{"Frontend::WebPath"}skins/Customer/Nerim/js/quill.min.js"></script>
+    <script type="text/javascript" >
+		(function() {
+			var advancedEditor;
+			advancedEditor = new Quill('.advanced-wrapper .editor-container',{
+				modules: {
+					'authorship': {
+					enabled: true
+			  	},
+			  	'toolbar': {
+					container: '.advanced-wrapper .toolbar-container'
+			  	},
+				  	'link-tooltip': true,
+			  		'image-tooltip': true,
+				  	'multi-cursor': true
+				},
+				theme: 'snow'
+			});
+			//console.log(jQuery("#RichText").val());
+			advancedEditor.setHTML(jQuery("#RichText").val());
+			advancedEditor.on('text-change', function(delta, source) {
+				if (source == 'api') {
+    				return ;
+  				} else if (source == 'user') {
+			    	//return console.log(advancedEditor.getText());
+			    	//return console.log(advancedEditor.getHTML());
+			    	jQuery("#RichText").val(advancedEditor.getHTML());
+			    	//console.log(jQuery("#RichText").val());
+			    }
+			});
+		}).call(this);
+	</script>

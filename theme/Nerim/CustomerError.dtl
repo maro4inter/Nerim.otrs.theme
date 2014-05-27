@@ -1,0 +1,37 @@
+# --
+# CustomerError.dtl - provides HTML Error screen
+# Copyright (C) 2001-2011 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerError.dtl,v 1.11.2.1 2011/03/16 15:28:16 mg Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!--<div id="MainBox">
+    <div class="Content">-->
+        <h2>
+            $Text{"Error"}: $QData{"Message"}
+        </h2>
+        <p>
+            $Text{"Comment"}: $QData{"Comment"}
+        </p>
+        <p>
+            $Text{"Traceback"}:
+        </p>
+        <pre>$QData{"BackendTraceback"}</pre>
+    <!--</div>
+</div>-->
+
+<div id="MainBox ARIARoleMain">
+    <div class="Content">
+        <h2>
+            $Text{"Error"}: $Text{"$Data{"Message"}"}
+        </h2>
+        <p>
+            $Text{"Comment"}: $Text{"$Data{"Comment"}"}
+        </p>
+    </div>
+</div>
+
