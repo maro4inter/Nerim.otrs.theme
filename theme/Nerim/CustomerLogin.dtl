@@ -1,0 +1,111 @@
+# --
+# CustomerLogin.dtl - provides customer HTML login screen
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerLogin.dtl,v 1.55 2010/11/25 10:09:47 mg Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+#
+# http headers
+$Include{"CustomerHeader"}
+		<div class="jumbotron">
+			<!--<h2>$Config{"CustomerHeadline"}</h2>
+	        <br>-->
+			<div class="row">
+				<!--<div class="col-md-8">-->
+					<!-- dtl:block:Message -->
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+				        	<h3 class="panel-title">Alert</h3>
+				      	</div>
+				      	<div class="panel-body">
+				        	$Text{"$Data{"Message"}"}
+				      	</div>
+					</div>
+					<!-- dtl:block:Message -->
+				<!--</div>-->
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div id="Slider">
+				    	<div id="SlideArea">
+				            <form class="form-horizontal" role="form" action="$Env{"CGIHandle"}" method="post" enctype="application/x-www-form-urlencoded" name="login">
+				            	<input type="hidden" name="Action" value="Login"/>
+				                <input type="hidden" name="RequestedURL" value="$QData{"RequestedURL"}"/>
+				                <input type="hidden" name="Lang" value="$Env{"UserLanguage"}"/>
+				                <input type="hidden" name="TimeOffset" id="TimeOffset" value=""/>
+								<div class="form-group">
+									<label for="User" class="col-sm-2 control-label">$Text{"Username"}</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-lock"></span>
+											<input type="text" title="$Text{"Your user name"}" class="form-control" name="User" id="User" maxlength="128" placeholder="" required >
+										</div>
+										<span class="help-block">Veuillez saisir votre identifiant client.</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="Password" class="col-sm-2 control-label">$Text{"Password"}</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+											<input type="password" title="$Text{"Your password"}" class="form-control" name="Password" id="Password" placeholder="" required >
+										</div>
+										<span class="help-block">Veuillez saisir votre mot passe.</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+								    
+								    </div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+								    	<button type="submit" class="btn btn-primary" value="$Text{"Log In"}" >$Text{"Log In"}</button>
+									</div>
+								</div>
+							</form>
+					    	<div class="Clear"></div>
+					    </div>
+					</div>
+					<br><br>
+					<p class="text-danger" style="font-size:11px;" >
+						Vous avez perdu vos identifiants, veuillez contacter le service technique NERIM !
+					</p>
+				</div>
+				<div class="col-xs-6 col-md-6" >
+					<a href="http://www.nerim.com" title="Découvrer NERIM ! Devenir un client ..." ><img class="img-responsive img-rounded" src="$Config{"Frontend::ImagePath"}bt_decouvrez.jpg" style="position:relative;float:right;right:0;" /></a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<h3>Security</h3>
+				<p class="text-danger">As of v7.0.1, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
+				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+				<p><a class="btn btn-primary" href="#" role="button">Plus &raquo;</a></p>
+			</div>
+			<div class="col-lg-4">
+				<h3>24H/24 7J/7 365 Days</h3>
+				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+				<p><a class="btn btn-primary" href="#" role="button">Plus &raquo;</a></p>
+			</div>
+			<div class="col-lg-4">
+				<h3>Full Responsive</h3>
+				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+				<p><a class="btn btn-primary" href="#" role="button">Plus &raquo;</a></p>
+			</div>
+		</div>
+		<!-- dtl:js_on_document_complete -->
+		<script type="text/javascript">//<![CDATA[
+			Core.Customer.Login.Init({LastLoginFailed: '$Data{"LoginFailed"}'});
+			<!-- dtl:block:SignupError -->
+			window.location.hash = 'Signup';
+			<!-- dtl:block:SignupError -->
+		//]]></script>
+		<!-- dtl:js_on_document_complete -->
+$Include{"CustomerFooter"}

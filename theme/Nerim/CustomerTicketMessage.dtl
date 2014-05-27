@@ -1,0 +1,248 @@
+# --
+# CustomerTicketMessage.dtl - provides HTML form for customer message
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerTicketMessage.dtl,v 1.59 2010/12/03 13:45:54 martin Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+	<div class="jumbotron">
+		<h2 style="color:#006bb3" >$Text{"Nouveau Ticket"}</h2>
+		<hr />
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+				<div id="Slider">
+					<div id="SlideArea">
+						<form class="form-horizontal" role="form" action="$Env{"CGIHandle"}" method="post" name="compose" enctype="multipart/form-data" >
+							<input type="hidden" name="Action" value="$Env{"Action"}" />
+							<input type="hidden" name="Subaction" value="StoreNew" />
+							<input type="hidden" name="Expand" id="Expand" value="" />
+							<input type="hidden" name="FormID" value="$QData{"FormID"}" />
+          						<!-- dtl:block:TicketType -->
+				                <div class="form-group">
+									<label for="TicketNumber" class="col-sm-2 control-label">$Config{"Ticket::Hook"}</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-tag"></span>
+				                    		<input title="Ticket#" type="text" name="TicketNumber" size="30" value="$QData{"TicketNumber"}" class="form-control" />
+				                    	</div>
+				                    	<span class="help-block"></span>
+				                   	</div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="TypeID" class="col-sm-2 control-label">$Text{"Type"}:</label>
+				                    <div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-tag"></span>
+				                    		$Data{"TypeStrg"}
+				                    	</div>
+				                    	<span class="help-block"></span>
+				                    </div>
+				                </div>				                
+		                		<hr />
+								<!--dtl:js_on_document_complete-->
+								<script type="text/javascript">//<![CDATA[
+								    $('#TypeID').bind('change', function (Event) {
+								        // make sure the ticket is not yet created on queue change
+								        $('input#Expand').val(1);
+								        Core.Form.Validate.DisableValidation($(this).closest('form'));
+								        $(this).closest('form').submit();
+								    });
+								    $("#TypeID").attr("class","form-control");
+								//]]></script>
+								<!--dtl:js_on_document_complete-->
+								<!-- dtl:block:TicketType -->
+								<!-- dtl:block:Queue -->
+				                <!--<div>
+				                    <label for="Dest" class="Mandatory">
+				                        <span class="Marker">*</span>
+				                        $Text{"To"}:
+				                    </label>
+				                    $Data{"ToStrg"}
+				                    <div id="DestError" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+				                    <div id="DestServerError" class="TooltipErrorMessage NoJavaScriptMessage$QData{"QueueInvalid"}" ><p>$Text{"This field is required."}</p></div>
+				                    <div class="Clear"></div>
+				                </div>-->
+								<div class="form-group">
+									<label for="Dest" class="col-sm-2 control-label">A</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-th-list"></span>
+											$Data{"ToStrg"}
+										</div>
+										<span class="help-block" style="color:#a94442;" >$Text{"This field is required."}</span>
+									</div>
+								</div>				
+								<!--dtl:js_on_document_complete-->
+								<script type="text/javascript">//<![CDATA[
+								    $('#Dest').bind('change', function (Event) {
+								        // make sure the ticket is not yet created on queue change
+								        $('input#Expand').val(1);
+								        Core.Form.Validate.DisableValidation($(this).closest('form'));
+								        $(this).closest('form').submit();
+								    });
+								    $("#Dest").attr("class","form-control");
+								    $("#Dest").attr("required","required");
+								//]]></script>
+								<!--dtl:js_on_document_complete-->
+								<!-- dtl:block:Queue -->
+								<!-- dtl:block:TicketService -->
+				                <!--<div>
+				                    <label for="ServiceID">$Text{"Service"}:</label>
+				                    $Data{"ServiceStrg"}
+				                    <div class="Clear"></div>
+				                </div>-->
+								<div class="form-group">
+									<label for="Dest" class="col-sm-2 control-label">$Text{"Service"}</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-th"></span>
+											$Data{"ServiceStrg"}
+										</div>
+										<span class="help-block" style="color:#a94442;" ></span>
+									</div>
+								</div>
+								<!--dtl:js_on_document_complete-->
+								<script type="text/javascript">//<![CDATA[
+								    $('#ServiceID').bind('change', function (Event) {
+								        // make sure the ticket is not yet created on queue change
+								        $('input#Expand').val(1);
+								        Core.Form.Validate.DisableValidation($(this).closest('form'));
+								        $(this).closest('form').submit();
+								    });
+								    $("#ServiceID").attr("class","form-control");
+								//]]></script>
+								<!--dtl:js_on_document_complete-->
+								<!-- dtl:block:TicketService -->
+								<!-- dtl:block:TicketSLA -->
+				                <!--<div>
+				                    <label for="SLAID" title="$Text{"Service level agreement"}">$Text{"SLA"}:</label>
+				                    $Data{"SLAStrg"}
+				                    <div class="Clear"></div>
+				                </div>-->
+								<div class="form-group">
+									<label for="SLAID" class="col-sm-2 control-label">$Text{"SLA"}</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-list-alt"></span>
+											$Data{"SLAStrg"}
+										</div>
+										<span class="help-block" style="color:#a94442;" ></span>
+									</div>
+								</div>
+								<!--dtl:js_on_document_complete-->
+								<script type="text/javascript">//<![CDATA[
+								    $('#SLAID').bind('change', function (Event) {
+								        // make sure the ticket is not yet created on queue change
+								        $('input#Expand').val(1);
+								        Core.Form.Validate.DisableValidation($(this).closest('form'));
+								        $(this).closest('form').submit();
+								    });
+								    $("#SLAID").attr("class","form-control");
+								//]]></script>
+								<!--dtl:js_on_document_complete-->
+								<!-- dtl:block:TicketSLA -->
+				                <!--<div>
+				                    <label for="Subject" class="Mandatory">
+				                        <span class="Marker">*</span>
+				                        $Text{"Subject"}:
+				                    </label>
+				                    <input title="Subject" type="text" id="Subject" name="Subject" value="$QData{"Subject"}" class="Validate_Required $QData{"SubjectInvalid"}" />
+				                    <div id="SubjectError" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+				                    <div id="SubjectServerError" class="TooltipErrorMessage NoJavaScriptMessage$QData{"SubjectInvalid"}" ><p>$Text{"This field is required."}</p></div>
+				                    <div class="Clear"></div>
+				                </div>-->
+								<div class="form-group">
+									<label for="SLAID" class="col-sm-2 control-label">$Text{"Subject"}</label>
+									<div class="col-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon glyphicon glyphicon-tag"></span>
+											<input title="Subject" type="text" id="Subject" name="Subject" value="$QData{"Subject"}" class="form-control" required />
+										</div>
+										<span class="help-block" style="color:#a94442;" >$Text{"This field is required."}</span>
+									</div>
+								</div>
+				                <div class="RichTextHolder">
+				                    <label for="RichText" class="Mandatory">
+				                        <span class="Marker">*</span>
+				                        $Text{"Text"}:
+				                    </label>
+				                    <div class="Clear"></div>
+									<!-- dtl:block:RichText -->
+										$Include{"CustomerRichTextEditor"}
+									<!-- dtl:block:RichText -->
+				                    <textarea id="RichText" class="RichText Validate_Required $QData{"BodyInvalid"}" name="Body" rows="15" cols="$Config{"Ticket::Frontend::TextAreaNote"}" style="resize:none;" >$QData{"Body"}</textarea>
+				                    <div id="RichTextError" class="TooltipErrorMessage" ><p>$Text{"This field is required."}</p></div>
+				                    <div id="RichTextServerError" class="TooltipErrorMessage NoJavaScriptMessage$QData{"BodyInvalid"}" ><p>$Text{"This field is required."}</p></div>
+				                    <div class="Clear"></div>
+				                </div>
+				                <div>
+				                    <label for="Attachment">$Text{"Attachment"}:</label>
+				                    <input name="file_upload" id="Attachment" title="Attachment" type="file" size="40" />
+				                    <input type="hidden" id="AttachmentUpload" name="AttachmentUpload" value="0" />
+									<!--dtl:js_on_document_complete-->
+									<script type="text/javascript">//<![CDATA[
+									    $('#Attachment').bind('change', function (Event) {
+									        var $Form = $('#Attachment').closest('form');
+									        Core.Form.Validate.DisableValidation($Form);
+									        $Form.find('#AttachmentUpload').val('1').end().submit();
+									    });
+									//]]></script>
+									<!--dtl:js_on_document_complete-->
+									<!-- dtl:block:Attachment -->
+				                    <div class="Attachment">
+				                        $QData{"Filename"} <span>$QData{"Filesize"}</span>
+				                        <button type="submit" name="AttachmentDelete$QData{"FileID"}" value="$Text{"Delete"}">$Text{"Delete"}</button>
+				                    </div>
+									<!-- dtl:block:Attachment -->
+				                    <div class="Clear"></div>
+				                </div>
+								<!-- dtl:block:Priority -->
+				                <div>
+				                    <label for="PriorityID">$Text{"Priority"}:</label>
+				                    $Data{"PriorityStrg"}
+				                    <div class="Clear"></div>
+				                </div>
+								<!-- dtl:block:Priority -->
+								<!-- dtl:block:FreeText -->
+				                <div>
+				                    $Data{"TicketFreeKeyField"}
+				                    $Data{"TicketFreeTextField"}
+				                    <div id="TicketFreeText$Data{"Count"}UsedError" class="TooltipErrorMessage NoJavaScriptMessage$QData{"ServerError"}"><p>$Text{"This field is required."}</p></div>
+				                    <div class="Clear"></div>
+				                </div>
+								<!-- dtl:block:FreeText -->
+								<!-- dtl:block:FreeTime -->
+				                <div>
+				                    $Data{"TicketFreeTimeKey"}
+				                    $Data{"TicketFreeTime"}
+				                    <div id="TicketFreeTime$Data{"Count"}UsedError" class="TooltipErrorMessage"><p>$Text{"This field is required."}</p></div>
+				                    <div class="Clear"></div>
+				                </div>
+								<!-- dtl:block:FreeTime -->
+								<!-- dtl:block:ArticleFreeText -->
+					                $Data{"ArticleFreeKeyField"}
+					                $Data{"ArticleFreeTextField"}
+					                <div id="ArticleFreeText$Data{"Count"}UsedError" class="TooltipErrorMessage NoJavaScriptMessage$QData{"ServerError"}"><p>$Text{"This field is required."}</p></div>
+					                <div class="Clear"></div>
+								<!-- dtl:block:ArticleFreeText -->				
+					            <div id="BottomActionRow" class="ActionRow">
+					                <button id="submitRichText" accesskey="g" title="$Text{"Submit"} (g)" type="submit" value="$Text{"Submit"}">$Text{"Submit"}</button>
+					            </div>
+						</form>
+						<div class="Clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-6" >
+				
+			</div>
+		</div>
+    </div>
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">
+    Core.Customer.InitFocus();
+</script>
+<!-- dtl:js_on_document_complete -->

@@ -1,0 +1,54 @@
+# --
+# CustomerNavigationBar.dtl - provides global HTML NavigationBar
+# Copyright (C) 2001-2010 OTRS AG, http://otrs.org/
+# --
+# $Id: CustomerNavigationBar.dtl,v 1.33 2010/10/12 16:07:49 cg Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<!-- start Notifications -->
+$Data{"Notification"}
+<!-- end Notifications -->
+<!-- start NavigationBar -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="$Env{"Baselink"}">Support</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+			<!-- dtl:block:Item -->
+				<li title="$Text{"$Data{"Description"}"}" class="$QData{"Class"}" >
+					<a href="$Env{"Baselink"}$Data{"Link"}" accesskey="$QData{"AccessKey"}" title="$Text{"$Data{"Name"}"} ($QData{"AccessKey"})">$Text{"$Data{"Name"}"}</a>
+				</li>
+			<!-- dtl:block:Item -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+		<!-- dtl:block:Preferences -->
+		<li>
+			<a href="$Env{"Baselink"}Action=CustomerPreferences" title="$Text{"Edit personal preferences"}">$Text{"Preferences"}</a>
+		</li>
+		<!-- dtl:block:Preferences -->
+		<!-- dtl:block:Logout -->
+        <li>
+			<a href="$Env{"Baselink"}Action=Logout" title="$Text{"Logout"} $Env{"UserFirstname"} $Env{"UserLastname"}">$Text{"Logout"}</a>
+        </li>
+        <!-- dtl:block:Logout -->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- end NavigationBar -->
+
